@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  db:
+    build:
+      context: ./db
+
+  server:
+    working_dir: /usr/src/app
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
